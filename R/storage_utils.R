@@ -63,6 +63,9 @@ call_storage_endpoint <- function(endpoint, path, options=list(), headers=list()
         url$query <- options[order(names(options))] # must be sorted for access key signing
 
     headers$`x-ms-version` <- endpoint$api_version
+    if (!is.null(getOption("azure_storage_headers"))) {
+        headers <- c(headers, getOption("azure_storage_headers"))
+    }
     retries <- as.numeric(getOption("azure_storage_retries"))
     r <- 0
     repeat

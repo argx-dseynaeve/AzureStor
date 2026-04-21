@@ -7,7 +7,7 @@ globalVariables(c("self", "pool"), "AzureStor")
 .AzureStor <- new.env()
 
 
-.onLoad <- function(libname, pkgname)
+.onLoad <- function(libname, pkame)
 {
     set_option <- function(name, value)
     {
@@ -15,7 +15,8 @@ globalVariables(c("self", "pool"), "AzureStor")
             options(structure(list(value), names=name))
     }
 
-    set_option("azure_storage_api_version", "2021-06-08")
+    set_option("azure_storage_api_version", "2025-11-05")
+    set_option("azure_storage_headers", list("x-ms-file-request-intent" = "backup"))
     set_option("azure_storage_progress_bar", TRUE)
     set_option("azure_storage_retries", 10)
 
